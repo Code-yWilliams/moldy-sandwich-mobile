@@ -1,0 +1,7 @@
+HIGH PRIORITY
+- [ ] Set up login and sign up screens
+- [ ] Establish a base API client that uses proper headers incl. auth
+- [ ] Set up authenticated routes beneath the (app) route group
+- [ ] On app boot, check if user is logged in and redirect accordingly
+
+LOW PRIORITY
