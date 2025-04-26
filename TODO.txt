@@ -4,4 +4,7 @@ HIGH PRIORITY
 - [ ] Set up authenticated routes beneath the (app) route group
 - [ ] On app boot, check if user is logged in and redirect accordingly
 
+MEDIUM PRIORITY
+- [ ] Update README
+
 LOW PRIORITY
