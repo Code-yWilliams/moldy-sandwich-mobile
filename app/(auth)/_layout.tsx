@@ -178,11 +178,6 @@ const styles = StyleSheet.create({
     paddingInline: 24,
     flexDirection: "column",
   },
-  welcomeText: {
-    fontSize: 40,
-    lineHeight: 40,
-    alignSelf: "center",
-  },
   blob: {
     position: "absolute",
   },
@@ -221,8 +216,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     margin: 0.5,
     borderRadius: 15,
-    borderColor: "rgba(255, 255, 255, 0.3)",
-    borderWidth: 0.5,
     padding: 32,
   },
 });
