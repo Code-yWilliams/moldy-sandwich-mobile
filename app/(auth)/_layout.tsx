@@ -7,55 +7,61 @@ import Animated, {
   Easing,
   withRepeat,
 } from "react-native-reanimated";
-import { View, StyleSheet, useColorScheme } from "react-native";
+import {
+  View,
+  StyleSheet,
+  useColorScheme,
+  ColorSchemeName,
+} from "react-native";
 import { Slot } from "expo-router";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-const COLORS = {
-  neonRed: "#FF174466",
-  neonPurple: "#7C4DFF66",
-  neonBlue: "#00B0FF66",
-  neonYellow: "#FFEA0066",
-  neonMagenta: "#D500F966",
-} as const;
+const COLORS = (colorScheme: ColorSchemeName) => ({
+  neonRed: colorScheme === "dark" ? "#FF174433" : "#FF174466",
+  neonPurple: colorScheme === "dark" ? "#7C4DFF33" : "#7C4DFF66",
+  neonBlue: colorScheme === "dark" ? "#00B0FF33" : "#00B0FF66",
+  neonYellow: colorScheme === "dark" ? "#FFEA0033" : "#FFEA0066",
+  neonMagenta: colorScheme === "dark" ? "#D500F933" : "#D500F966",
+});
 
-const BLOBS = [
-  {
-    size: 340,
-    speedMultiplier: 0.4,
-    rangeX: 250,
-    rangeY: 200,
-    color: COLORS.neonRed,
-  },
-  {
-    size: 290,
-    speedMultiplier: 0.3,
-    rangeX: -280,
-    rangeY: 180,
-    color: COLORS.neonPurple,
-  },
-  {
-    size: 350,
-    speedMultiplier: 0.25,
-    rangeX: 200,
-    rangeY: -220,
-    color: COLORS.neonBlue,
-  },
-  {
-    size: 260,
-    speedMultiplier: 0.35,
-    rangeX: -230,
-    rangeY: -190,
-    color: COLORS.neonYellow,
-  },
-  {
-    size: 290,
-    speedMultiplier: 0.28,
-    rangeX: -180,
-    rangeY: 240,
-    color: COLORS.neonMagenta,
-  },
-] as const;
+const BLOBS = (colorScheme: ColorSchemeName) =>
+  [
+    {
+      size: 340,
+      speedMultiplier: 0.4,
+      rangeX: 250,
+      rangeY: 200,
+      color: COLORS(colorScheme).neonRed,
+    },
+    {
+      size: 290,
+      speedMultiplier: 0.3,
+      rangeX: -280,
+      rangeY: 180,
+      color: COLORS(colorScheme).neonPurple,
+    },
+    {
+      size: 350,
+      speedMultiplier: 0.25,
+      rangeX: 200,
+      rangeY: -220,
+      color: COLORS(colorScheme).neonBlue,
+    },
+    {
+      size: 260,
+      speedMultiplier: 0.35,
+      rangeX: -230,
+      rangeY: -190,
+      color: COLORS(colorScheme).neonYellow,
+    },
+    {
+      size: 290,
+      speedMultiplier: 0.28,
+      rangeX: -180,
+      rangeY: 240,
+      color: COLORS(colorScheme).neonMagenta,
+    },
+  ] as const;
 
 const ANIMATION_CONFIG = {
   baseSpeed: 30000,
@@ -73,14 +79,14 @@ interface AuthLayoutProps {
 const AuthLayout = () => {
   const colorScheme = useColorScheme();
 
-  const blobs = BLOBS.map(() => ({
+  const blobs = BLOBS(colorScheme).map(() => ({
     translateX: useSharedValue(0),
     translateY: useSharedValue(0),
   }));
 
   useEffect(() => {
     blobs.forEach((blob, index) => {
-      const config = BLOBS[index];
+      const config = BLOBS(colorScheme)[index];
 
       const startX =
         Math.random() * ANIMATION_CONFIG.startXRange -
@@ -146,10 +152,10 @@ const AuthLayout = () => {
             style={[
               {
                 ...styles.blob,
-                width: BLOBS[index].size,
-                height: BLOBS[index].size,
-                borderRadius: BLOBS[index].size / 2,
-                backgroundColor: BLOBS[index].color,
+                width: BLOBS(colorScheme)[index].size,
+                height: BLOBS(colorScheme)[index].size,
+                borderRadius: BLOBS(colorScheme)[index].size / 2,
+                backgroundColor: BLOBS(colorScheme)[index].color,
               },
               animatedStyle,
             ]}
