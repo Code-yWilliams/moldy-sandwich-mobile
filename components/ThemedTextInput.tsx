@@ -4,6 +4,7 @@ import {
   Pressable,
   TextInput,
   TextInputProps,
+  useColorScheme,
   View,
   ViewStyle,
 } from "react-native";
@@ -22,6 +23,8 @@ const ThemedTextInput = ({
   ...props
 }: ThemedTextInputProps) => {
   const inputRef = useRef<TextInput>(null);
+
+  const colorScheme = useColorScheme();
 
   return (
     <Pressable onPress={() => inputRef.current?.focus()}>
@@ -62,8 +65,13 @@ const ThemedTextInput = ({
             onChangeText={onChangeText}
             style={{
               fontSize: 16,
+              color: colorScheme === "light" ? "black" : "white",
             }}
-            placeholderTextColor="rgba(0, 0, 0, 0.3)"
+            placeholderTextColor={
+              colorScheme === "dark"
+                ? "rgba(255, 255, 255, 0.3)"
+                : "rgba(0, 0, 0, 0.3)"
+            }
             ref={inputRef}
             {...props}
           />
