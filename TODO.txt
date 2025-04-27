@@ -6,5 +6,7 @@ HIGH PRIORITY
 
 MEDIUM PRIORITY
 - [ ] Update README
+- [ ] Change device text size to largest option and make sure app is usable
+- [ ] Review accessibility optimizations
 
 LOW PRIORITY
