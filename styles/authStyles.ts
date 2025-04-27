@@ -14,7 +14,7 @@ export const authStyles = StyleSheet.create({
   },
   alternateActionText: {
     textAlign: "center",
-    marginTop: "auto",
+    marginTop: 40,
   },
   alternateActionButton: {
     height: 45,

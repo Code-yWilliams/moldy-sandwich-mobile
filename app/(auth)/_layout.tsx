@@ -7,8 +7,9 @@ import Animated, {
   Easing,
   withRepeat,
 } from "react-native-reanimated";
-import { ScrollView, View, StyleSheet } from "react-native";
+import { View, StyleSheet, useColorScheme } from "react-native";
 import { Slot } from "expo-router";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const COLORS = {
   neonRed: "#FF174466",
@@ -70,6 +71,8 @@ interface AuthLayoutProps {
 }
 
 const AuthLayout = () => {
+  const colorScheme = useColorScheme();
+
   const blobs = BLOBS.map(() => ({
     translateX: useSharedValue(0),
     translateY: useSharedValue(0),
@@ -124,7 +127,7 @@ const AuthLayout = () => {
   }, []);
 
   return (
-    <ScrollView
+    <KeyboardAwareScrollView
       contentContainerStyle={styles.container}
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
@@ -157,7 +160,7 @@ const AuthLayout = () => {
       <View style={[styles.formContainer]}>
         <BlurView
           tint="systemChromeMaterial"
-          intensity={50}
+          intensity={colorScheme === "light" ? 30 : 100}
           style={styles.blurView}
         >
           <View style={styles.formInnerContainer}>
@@ -165,7 +168,7 @@ const AuthLayout = () => {
           </View>
         </BlurView>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
@@ -191,12 +194,9 @@ const styles = StyleSheet.create({
     shadowRadius: 50,
     width: "100%",
     maxWidth: 400,
-    height: 650,
+    alignSelf: "center",
   },
   blurView: {
-    display: "flex",
-    flex: 1,
-    height: "100%",
     width: "100%",
     overflow: "hidden",
     borderRadius: 50,
@@ -212,7 +212,6 @@ const styles = StyleSheet.create({
     elevation: 20,
   },
   formInnerContainer: {
-    flex: 1,
     flexDirection: "column",
     margin: 0.5,
     borderRadius: 15,
