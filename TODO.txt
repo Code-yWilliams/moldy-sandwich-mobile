@@ -10,3 +10,4 @@ MEDIUM PRIORITY
 - [ ] Review accessibility optimizations
 
 LOW PRIORITY
+- [ ] Set up animated transition between login and login and sign up screens
